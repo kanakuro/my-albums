@@ -1,0 +1,14 @@
+.login {
+    display: flex;
+}
+.input_login {
+    display: flex;
+    flex-direction: column;
+}
+.register {
+    display: flex;
+}
+.input_register {
+    display: flex;
+    flex-direction: column;
+}
