@@ -31,10 +31,10 @@ class HomeController extends Controller
         return view('home')->with('posts', $posts);
     }
 
-    public function show($post_id)
+    public function show(Post $post)
     // public function show(Post $post)
     {
-        $post = Post::where('post_id', $post_id)->firstOrFail();
+        // $post = Post::where('post_id', $post_id)->firstOrFail();
         return view('show')->with('post', $post);
     }
 
@@ -46,6 +46,10 @@ class HomeController extends Controller
 
     public function store(PostRequest $request)
     {
+        $this ->validate($request, [
+            'title' => 'required|min:3',
+            'body' => 'required'
+        ]);
         $post=new Post();
         $post->title = $request->title;
         $post->body = $request->body;
@@ -55,7 +59,17 @@ class HomeController extends Controller
         // $post->picURL_4 = null;
         // $post->picURL_5 = null;
         $post->save();
-        return redirect('/home');
+        return redirect('/albumForShare');
+    }
+    public function edit(Post $post)
+    {
+        return view('edit')->with('post', $post);
+    }
+
+    public function destroy(Post $post, Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->back();
     }
 
     public function logout()

@@ -1,7 +1,9 @@
 body {
     padding: 1.5rem;
 }
-
+/************************
+        login 
+ ***********************/
 .login {
     display: flex;
 }
@@ -16,7 +18,9 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+/************************
+        default 
+ ***********************/
 .header {
     position: absolute;
     top: 0;
@@ -25,7 +29,7 @@ body {
     height: 3em;
     display: flex;
     justify-content: flex-start;
-    background-color: #3390db;
+    background-color: lightskyblue;
     color: #ffffff;
     padding: 0.5em;
 }
@@ -48,7 +52,7 @@ body {
 }
 
 .menuListOpen {
-    background-color: #3390db;
+    background-color: lightskyblue;
     height: 30px;
     width: 30px;
     border: none;
@@ -58,7 +62,7 @@ body {
     cursor: pointer;
 }
 .menuListClose {
-    background-color: #3390db;
+    background-color: lightskyblue;
     font-size: 10px;
 }
 .menuListClose:hover {
@@ -70,12 +74,43 @@ body {
     left: 0.5em;
     width: 15em;
     height: 25em;
-    background-color: rgba(119, 170, 211, 0.9);
+    background-color: rgba(119, 170, 211, 0.95);
     z-index: 4;
 }
-/* #menu_list {
-    display: none;
-} */
 .logo {
     font-size: 1.5rem;
+}
+.container {
+    width: 30rem;
+    height: 30rem;
+    padding: 2rem;
+}
+/************************
+        home 
+ ***********************/
+.icon:hover {
+    background-color: rgba(119, 170, 211, 0.6);
+}
+.icon:active {
+    background-color: rgba(12, 121, 209, 0.95);
+}
+.posts {
+    display: flex;
+}
+.newPosts {
+    padding-top: 5rem;
+}
+.existingPosts {
+    padding: 1.5rem;
+}
+.homeLink {
+    margin: 0 5px 0 5px;
+}
+/************************
+        create 
+ ***********************/
+.back {
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
 }

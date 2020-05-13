@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 Route::get('/login', 'Auth\LoginController@index')->name('auth.login');
 Route::post('/login', 'Auth\LoginController@postLogin');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/{post_id}', 'HomeController@show')->name('show');
-Route::post('/post', 'HomeController@store');
-Route::get('/posts/create', 'HomeController@create');
+Route::get('/albumForShare', 'HomeController@index')->name('home');
+Route::get('/albumForShare/{post}', 'HomeController@show')->where('post', '[0-9]+');
+Route::get('/albumForShare/{post}/edit', 'HomeController@edit');
+Route::post('/albumForShare/post', 'HomeController@store');
+Route::get('/albumForShare/create', 'HomeController@create')->name('create');
 Route::get('/logout', 'HomeController@logout')->name('auth.logout');
 Route::get('/register', 'Auth\RegisterController@index')->name('auth.register');
 Route::post('/register', 'Auth\RegisterController@create');
+Route::delete('/albumForShare/{id}', 'HomeController@destroy');

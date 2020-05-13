@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8" />
-        <title>{{$post-> title}}</title>
-        <link rel="stylesheet" href="/css/style.css" />
-    </head>
-    <body>
-        <h1>
-            {{$post-> title}}
-        </h1>
-        <div>{!! nl2br(e($post-> body)) !!}</div>
-    </body>
+@extends('layout.default') @section('content')
 
-    <script src="/js/main.js"></script>
-</html>
+{{ csrf_field() }}
+<h1>
+    <a href="{{ url('/albumForShare') }}" class="back">
+        <img
+            class="icon"
+            src="{{ asset('/storage/img/back.png') }}"
+            alt="newPost"
+            width="25px"
+            height="25px"
+        />
+    </a>
+    {{$post-> title}}
+</h1>
+<div>{!! nl2br(e($post-> body)) !!}</div>
+<script src="/js/main.js"></script>
+@endsection

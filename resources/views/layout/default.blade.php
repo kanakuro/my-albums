@@ -26,14 +26,21 @@
                         <span id="toggle-sidebar" class="button icon">
                             <img
                                 class="burgerMenu"
-                                src="storage/burgerMenu.png"
+                                src="{{ asset('/storage/img/burgerMenu.png') }}"
                                 alt="burgerMenu"
                                 width="30px"
                                 height="30px"
                             />
                         </span>
                     </button>
-                    <div class="logo">my album</div>
+                    <div class="logo">
+                        <img
+                            class="titleImg"
+                            src="{{ asset('/storage/img/title.png') }}"
+                            width="300px"
+                            height="60px"
+                        />
+                    </div>
                 </div>
             </div>
             <div class="container">
@@ -41,5 +48,4 @@
             </div>
         </div>
     </body>
-    <script src="/js/main.js"></script>
 </html>
