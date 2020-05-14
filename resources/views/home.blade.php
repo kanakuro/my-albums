@@ -36,7 +36,7 @@
                         height="16px"
                     />
                 </a>
-                <a href="#" class="homeLink" data-id="{{$post-> id}}">
+                <a href="#" class="del" data-id="{{$post-> id}}">
                     <img
                         class="icon"
                         src="{{ asset('/storage/img/delete.png') }}"
@@ -47,8 +47,8 @@
                 </a>
                 <form
                     method="post"
-                    action="{{ url('/posts', $post-> post_id)}}"
-                    id="form_{{$post-> post_id}}"
+                    action="{{ url('/albumForShare', $post-> id)}}"
+                    id="form_{{$post-> id}}"
                 >
                     {{ csrf_field() }}
                     {{ method_field("delete") }}

@@ -46,10 +46,6 @@ class HomeController extends Controller
 
     public function store(PostRequest $request)
     {
-        $this ->validate($request, [
-            'title' => 'required|min:3',
-            'body' => 'required'
-        ]);
         $post=new Post();
         $post->title = $request->title;
         $post->body = $request->body;
@@ -61,15 +57,29 @@ class HomeController extends Controller
         $post->save();
         return redirect('/albumForShare');
     }
+
+    public function update(PostRequest $request, Post $post)
+    {
+        $post->title = $request->title;
+        $post->body = $request->body;
+        // $post->picURL_1 = null;
+        // $post->picURL_2 = null;
+        // $post->picURL_3 = null;
+        // $post->picURL_4 = null;
+        // $post->picURL_5 = null;
+        $post->save();
+        return redirect('/albumForShare');
+    }
+
     public function edit(Post $post)
     {
         return view('edit')->with('post', $post);
     }
 
-    public function destroy(Post $post, Comment $comment)
+    public function destroy(Post $post)
     {
-        $comment->delete();
-        return redirect()->back();
+        $post->delete();
+        return redirect('/albumForShare');
     }
 
     public function logout()

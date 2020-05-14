@@ -1,5 +1,5 @@
 @extends('layout.default') @section('content')
-<form method="post" action="{{ url('/albumForShare/post', $post->id) }}">
+<form method="post" action="{{ url('/albumForShare', $post->id) }}">
     <a href="{{ url('/albumForShare') }}" class="back">
         <img
             class="icon"
