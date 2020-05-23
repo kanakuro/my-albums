@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\User;
 use App\Http\Requests\PostRequest;
 
 class HomeController extends Controller
@@ -34,8 +35,8 @@ class HomeController extends Controller
     public function show(Post $post)
     // public function show(Post $post)
     {
-        // $post = Post::where('post_id', $post_id)->firstOrFail();
-        return view('show')->with('post', $post);
+        $user = Auth::user();
+        return view('show')->with(['post'=>$post, 'user'=> $user]);
     }
 
     public function create()

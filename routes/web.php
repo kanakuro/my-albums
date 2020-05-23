@@ -26,3 +26,5 @@ Route::get('/logout', 'HomeController@logout')->name('auth.logout');
 Route::get('/register', 'Auth\RegisterController@index')->name('auth.register');
 Route::post('/register', 'Auth\RegisterController@create');
 Route::delete('/albumForShare/{post}', 'HomeController@destroy');
+Route::post('/albumForShare/{post}/comment', 'CommentsController@store');
+Route::delete('/albumForShare/{post}/comment/{comment}', 'CommentsController@destroy');

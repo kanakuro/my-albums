@@ -117,3 +117,16 @@ body {
     font-weight: normal;
     float: right;
 }
+/************************
+        show 
+ ***********************/
+.comment {
+    padding: 2rem 0 1rem 0;
+    font-size: 14px;
+}
+li.commentList {
+    list-style: none;
+    padding-left: 28px;
+    background: url(/storage/img/comment.png) left 0px top 3px no-repeat;
+    background-size: 17px auto;
+}
