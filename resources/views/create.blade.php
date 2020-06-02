@@ -1,5 +1,9 @@
 @extends('layout.default') @section('content')
-<form method="post" action="{{ url('/albumForShare/post') }}">
+<form
+    method="post"
+    action="{{ url('/albumForShare/post') }}"
+    enctype="multipart/form-data"
+>
     <a href="{{ url('/albumForShare') }}" class="back">
         <img
             class="icon"
@@ -27,6 +31,17 @@
         }}</textarea>
         @if($errors-> has('body'))
         <span class="error">{{ $errors-> first('body')}}</span>
+        @endif
+    </p>
+    <p>
+        <input id="file1" type="file" name="image1" />
+        <input id="file2" type="file" name="image2" />
+        <input id="file3" type="file" name="image3" />
+        <input id="file4" type="file" name="image4" />
+        <input id="file5" type="file" name="image5" />
+
+        @if ($errors-> has('image'))
+        <span class="error">{{ $errors-> first('image') }} </span>
         @endif
     </p>
     <p>

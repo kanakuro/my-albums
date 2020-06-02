@@ -14,6 +14,9 @@
     {{$post-> title}}
 </h1>
 <div>{!! nl2br(e($post-> body)) !!}</div>
+<img src="{{ $post->pic1 }}" />
+<img src="{{ $post->pic2 }}" />
+<img src="{{ $post->pic3 }}" />
 <div class="comment">
     <ul>
         <!-- <img

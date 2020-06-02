@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -33,10 +34,9 @@ class HomeController extends Controller
     }
 
     public function show(Post $post)
-    // public function show(Post $post)
     {
         $user = Auth::user();
-        return view('show')->with(['post'=>$post, 'user'=> $user]);
+        return view('show', ['post'=>$post, 'user'=> $user]);
     }
 
     public function create()
@@ -50,11 +50,31 @@ class HomeController extends Controller
         $post=new Post();
         $post->title = $request->title;
         $post->body = $request->body;
-        // $post->picURL_1 = null;
-        // $post->picURL_2 = null;
-        // $post->picURL_3 = null;
-        // $post->picURL_4 = null;
-        // $post->picURL_5 = null;
+
+        // $params = $request->validate([
+        //     'image1' => 'required|file|image|max:4000',
+        //     'image2' => 'required|file|image|max:4000',
+        //     'image3' => 'required|file|image|max:4000',
+        //     'image4' => 'required|file|image|max:4000',
+        //     'image5' => 'required|file|image|max:4000',
+        // ]);
+        
+        $disk = Storage::disk('s3');
+        for ($i = 1; $i <= 5; $i++) {
+            $post_var_name = 'postPic' . $i;
+            $path_var_name = 'path' . $i;
+            $image_name = 'image' . $i;
+            $param_name = 'pic' . $i;
+            $$post_var_name = $request->$image_name;
+            if (empty($$post_var_name)) {
+                $$path_var_name = null;
+                $post->$param_name = null;
+            } else {
+                $$path_var_name = $disk->put('/postPics', $$post_var_name, 'public');
+                $post->$param_name = $disk->url($$path_var_name);
+            }
+        }
+
         $post->save();
         return redirect('/albumForShare');
     }

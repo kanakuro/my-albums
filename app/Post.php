@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'picURL_1', 'picURL_2', 'picURL_3', 'picURL_4', 'picURL_5'
+        'title', 'body', 'pic1', 'pic2', 'pic3', 'pic4', 'pic5'
     ];
     public function comments()
     {
