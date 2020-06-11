@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+// require 'vendor/autoload.php';
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
+// use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -50,7 +54,6 @@ class HomeController extends Controller
         $post=new Post();
         $post->title = $request->title;
         $post->body = $request->body;
-
         // $params = $request->validate([
         //     'image1' => 'required|file|image|max:4000',
         //     'image2' => 'required|file|image|max:4000',
@@ -58,23 +61,36 @@ class HomeController extends Controller
         //     'image4' => 'required|file|image|max:4000',
         //     'image5' => 'required|file|image|max:4000',
         // ]);
-        
+
         $disk = Storage::disk('s3');
         for ($i = 1; $i <= 5; $i++) {
+            // 動的変数名のセット
             $post_var_name = 'postPic' . $i;
             $path_var_name = 'path' . $i;
             $image_name = 'image' . $i;
             $param_name = 'pic' . $i;
-            $$post_var_name = $request->$image_name;
+            $$post_var_name = $request->file($image_name);
+            // dd($$post_var_name);
+            // if ($i===1) {
+            //     dd($$post_var_name);
+            // }
             if (empty($$post_var_name)) {
+                // 画像がない場合
                 $$path_var_name = null;
                 $post->$param_name = null;
             } else {
-                $$path_var_name = $disk->put('/postPics', $$post_var_name, 'public');
-                $post->$param_name = $disk->url($$path_var_name);
+                // 画像リサイズ
+                $extension = $$post_var_name->getClientOriginalExtension();
+                $pic_name = $$post_var_name->getClientOriginalName();
+                $pic_path = 'postPics/'.$pic_name;
+                $img = \Image::make($$post_var_name);
+                $resize_img = $img->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $disk->put($pic_path, (string)$resize_img->encode($extension), 'public');
+                $post->$param_name = $disk->url($pic_path);
             }
         }
-
         $post->save();
         return redirect('/albumForShare');
     }

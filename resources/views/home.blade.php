@@ -1,8 +1,6 @@
 @extends('layout.default') @section('content')
 
 {{ csrf_field() }}
-<button id="logout">ログアウト</button>
-<button>アカウント登録</button>
 <div class="posts">
     <div class="newPosts">
         <a href="{{ url('/albumForShare/create') }}" class="header-menu">

@@ -10,12 +10,22 @@
     <body>
         <div class="menu_list" id="menu_list">
             <button class="menuListClose" id="menuListClose">
-                ×
+                <img
+                    class="closeButton"
+                    src="{{ asset('/storage/img/closeButton.png') }}"
+                    alt="closeButton"
+                    width="20px"
+                    height="20px"
+                />
             </button>
             <ul>
-                <li class="close-sidebar" href="#">ホーム</li>
+                <li class="close-sidebar">
+                    <a href="/albumForShare">ホーム</a>
+                </li>
                 <li class="close-sidebar" href="#">アカウント新規登録</li>
-                <li class="close-sidebar" href="#">ログアウト</li>
+                <li class="close-sidebar">
+                    <a href="/logout">ログアウト</a>
+                </li>
             </ul>
         </div>
 
@@ -23,15 +33,15 @@
             <div class="header">
                 <div class="headerLine">
                     <button class="menuListOpen" id="menuListOpen">
-                        <span id="toggle-sidebar" class="button icon">
-                            <img
-                                class="burgerMenu"
-                                src="{{ asset('/storage/img/burgerMenu.png') }}"
-                                alt="burgerMenu"
-                                width="30px"
-                                height="30px"
-                            />
-                        </span>
+                        <!-- <span id="toggle-sidebar" class="button icon"> -->
+                        <img
+                            class="burgerMenu"
+                            src="{{ asset('/storage/img/burgerMenu.png') }}"
+                            alt="burgerMenu"
+                            width="28px"
+                            height="28px"
+                        />
+                        <!-- </span> -->
                     </button>
                     <div class="logo">
                         <img

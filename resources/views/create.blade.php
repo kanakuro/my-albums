@@ -34,11 +34,51 @@
         @endif
     </p>
     <p>
-        <input id="file1" type="file" name="image1" />
-        <input id="file2" type="file" name="image2" />
-        <input id="file3" type="file" name="image3" />
-        <input id="file4" type="file" name="image4" />
-        <input id="file5" type="file" name="image5" />
+    <div class="imgInput">
+        <img
+            class="thumbnail"
+            id="thumbnail1"
+            accept="image/*"
+            src="{{ asset('/storage/img/image.png') }}"
+        />
+        <input id="file1" type="file" name="image1"/>
+    </div>
+    <div class="imgInput">
+        <img
+            class="thumbnail"
+            id="thumbnail2"
+            accept="image/*"
+            src="{{ asset('/storage/img/image.png') }}"
+        />
+        <input id="file2" type="file" name="image2" onchange="onChangeInputFile(this)"/>
+    </div>
+    <div class="imgInput">
+            <img
+            class="thumbnail"
+            id="thumbnail3"
+            accept="image/*"
+            src="{{ asset('/storage/img/image.png') }}"
+        />
+        <input id="file3" type="file" name="image3" onchange="onChangeInputFile(this)"/>
+    </div>
+    <div class="imgInput">
+            <img
+            class="thumbnail"
+            id="thumbnail4"
+            accept="image/*"
+            src="{{ asset('/storage/img/image.png') }}"
+        />
+        <input id="file4" type="file" name="image4" onchange="onChangeInputFile(this)"/>
+    </div>
+    <div class="imgInput">
+            <img
+            class="thumbnail"
+            id="thumbnail5"
+            accept="image/*"
+            src="{{ asset('/storage/img/image.png') }}"
+        />
+        <input id="file5" type="file" name="image5" onchange="onChangeInputFile(this)"/>
+    </div>
 
         @if ($errors-> has('image'))
         <span class="error">{{ $errors-> first('image') }} </span>

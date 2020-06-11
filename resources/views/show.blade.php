@@ -17,6 +17,8 @@
 <img src="{{ $post->pic1 }}" />
 <img src="{{ $post->pic2 }}" />
 <img src="{{ $post->pic3 }}" />
+<img src="{{ $post->pic4 }}" />
+<img src="{{ $post->pic5 }}" />
 <div class="comment">
     <ul>
         <!-- <img

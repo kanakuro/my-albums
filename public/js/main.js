@@ -46,3 +46,20 @@ closeButton.addEventListener(
         });
     }
 })();
+/******************************
+        画像のサムネイル
+******************************/
+for (let i = 1; i < 6; i++) {
+    let fileId = "file" + String(i);
+    let thumbnailId = "thumbnail" + String(i);
+    let inputFile = document.getElementById(fileId);
+    let showThumbnail = document.getElementById(thumbnailId);
+    inputFile.addEventListener("change", fileChange, false);
+    function fileChange(ev) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            showThumbnail.setAttribute("src", ev.target.result);
+        };
+        reader.readAsDataURL(ev.target.files[0]);
+    }
+}
